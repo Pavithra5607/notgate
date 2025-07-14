@@ -1,0 +1,44 @@
+#! /usr/local/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x28ba6250 .scope package, "$unit" "$unit" 2 1;
+ .timescale 0 0;
+S_0x28b81d90 .scope module, "tb_not_gate" "tb_not_gate" 3 1;
+ .timescale 0 0;
+v0x28bc98a0_0 .var "a", 0 0;
+v0x28bc9970_0 .net "y", 0 0, L_0x28bc9a40;  1 drivers
+S_0x28b81f20 .scope module, "uut" "not_gate_dataflow" 3 5, 4 1 0, S_0x28b81d90;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /OUTPUT 1 "y";
+L_0x28bc9a40 .functor NOT 1, v0x28bc98a0_0, C4<0>, C4<0>, C4<0>;
+v0x28b82d70_0 .net "a", 0 0, v0x28bc98a0_0;  1 drivers
+v0x28bc9780_0 .net "y", 0 0, L_0x28bc9a40;  alias, 1 drivers
+    .scope S_0x28b81d90;
+T_0 ;
+    %vpi_call/w 3 8 "$dumpfile", "not_gate_dataflow.vcd" {0 0 0};
+    %vpi_call/w 3 9 "$dumpvars" {0 0 0};
+    %vpi_call/w 3 10 "$monitor", "Time = %0t | a = %b | y = %b", $time, v0x28bc98a0_0, v0x28bc9970_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x28bc98a0_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x28bc98a0_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call/w 3 15 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "testbench.sv";
+    "design.sv";
